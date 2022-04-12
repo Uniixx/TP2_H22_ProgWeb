@@ -1,22 +1,54 @@
 <!DOCTYPE html>
 <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+        <title>TP2_H22 - Accueil</title>
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/visionneuse.css">
+        <script src="js/visionneuse.js"></script>
+    </head>
+    <body>
+        <main>
+            <aside id="menuVisionneuse">
+                <button value ="suivant" id="suivant">Suivant</button>
+                <button id="precedent">Précédent</button>
+                <button id="arret">Arrêt</button>
+                <select>
+                    <option>Lent</option>
+                    <option selected>Normale</option>
+                    <option>Rapide</option>
+                </select>
+            </aside>
+            <div id="visionneuse">
+                <img id="imagePrincipale" src="images/foret.jpg" alt="Forêt en automne">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>TP2_H22 - Accueil</title>
+                <div id="vignettes">
+                    <ul>
+                        <li>
+                            <img id="vignnetteUn" src="images/vignettes/vignette-foret.jpg" alt="Petite-forêt">
+                        </li>
+                        <li>
+                            <img id="vignnetteDeux"src="images/vignettes/vignette-lac.jpg" alt="Petit-lac">
+                        </li>
+                        <li>
+                            <img id="vignnetteTrois"src="images/vignettes/vignette-montagne.png" alt="Petite-montagne">
+                        </li>
+                        <li>
+                            <img id="vignnetteQuatre"src="images/vignettes/vignette-urbbain.jpg" alt="Vignette Village Urbain">
+                        </li>
+                        <li>
+                            <img id="vignnetteCinq"src="images/vignettes/vignette-plage.png" alt="Vignette-Plage">
+                        </li>
+                        <li>
+                            <img id="vignnetteSix"src="images/vignettes/vignette-plaine.jpg" alt="Vignette-Plaine">
+                        </li>
+                    </ul>  
+                </div>
 
-    <script href="js/formulaire.js" defer></script>
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/visionneuse.css">
-</head>
-
-<body>
-    <header></header>
-    <main></main>
-    <footer></footer>
-</body>
-
+            </div>
+        </main>
+    </body>
 </html>

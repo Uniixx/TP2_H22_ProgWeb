@@ -1,1 +1,36 @@
 /* CSS Visionneuse */
+main
+{
+    display: flex;
+}
+button
+{
+    width: 100px;
+}
+#menuVisionneuse select
+{
+    width: 100px;
+    margin-left: 15px;
+}
+#menuVisionneuse button
+{
+    display: block;
+    margin: 15px 15px;
+}
+#vignettes img
+{
+    margin-right: 2px;
+}
+#vignettes li
+{
+    display: inline-block;
+}
+#vignettes > ul
+{
+    list-style: none;
+    padding: 0;
+}
+#menuVisionneuse button:first-of-type
+{
+    margin: 0 15px;
+}

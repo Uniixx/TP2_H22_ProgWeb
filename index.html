@@ -8,16 +8,24 @@
         <title>TP2_H22 - Accueil</title>
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="css/visionneuse.css">
-        <script src="js/visionneuse.js"></script>
+        <script src="js/visionneuse.js" defer></script>
     </head>
     <body>
         <main>
             <aside id="menuVisionneuse">
-                <button value ="suivant" id="suivant">Suivant</button>
-                <button id="precedent">Précédent</button>
-                <button id="arret">Arrêt</button>
+                <ul>
+                    <li>
+                        <button id="suivant">Suivant</button>
+                    </li>
+                    <li>
+                        <button id="precedent">Précédent</button>
+                    </li>
+                    <li>
+                        <button id="arret">Arrêt</button>
+                    </li>
+                </ul> 
                 <select>
-                    <option>Lent</option>
+                    <option id="optionL">Lent</option>
                     <option selected>Normale</option>
                     <option>Rapide</option>
                 </select>
@@ -37,13 +45,14 @@
                             <img id="vignnetteTrois"src="images/vignettes/vignette-montagne.png" alt="Petite-montagne">
                         </li>
                         <li>
-                            <img id="vignnetteQuatre"src="images/vignettes/vignette-urbbain.jpg" alt="Vignette Village Urbain">
-                        </li>
-                        <li>
                             <img id="vignnetteCinq"src="images/vignettes/vignette-plage.png" alt="Vignette-Plage">
                         </li>
                         <li>
                             <img id="vignnetteSix"src="images/vignettes/vignette-plaine.jpg" alt="Vignette-Plaine">
+                        </li>
+                        <li>
+                            <img id="vignnetteQuatre"src="images/vignettes/vignette-urbbain.jpg" alt="Vignette Village Urbain">
+                            
                         </li>
                     </ul>  
                 </div>

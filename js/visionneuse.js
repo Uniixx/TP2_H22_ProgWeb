@@ -8,21 +8,15 @@ let btnArret = document.getElementById("arret");
 let indexImageEnCours = 0;
 
 //Variable de mes vignettes
-let vignette1 = document.getElementById("vignetteUn");
-let vignette2 = document.getElementById("vignetteDeux");
-let vignette3 = document.getElementById("vignetteTrois");
-let vignette4 = document.getElementById("vignetteQuatre");
-let vignette5 = document.getElementById("vignetteCinq");
-let vignette6 = document.getElementById("vignetteSix");
+let vignette1 = document.getElementById("vignnetteUn");
+let vignette2 = document.getElementById("vignnetteDeux");
+let vignette3 = document.getElementById("vignnetteTrois");
+let vignette4 = document.getElementById("vignnetteQuatre");
+let vignette5 = document.getElementById("vignnetteCinq");
+let vignette6 = document.getElementById("vignnetteSix");
 
 //Array Path Images Principale
-const un = "images/foret.jpg";
-const deux = "images/lac.jpg";
-const trois = "images/montagne.png";
-const quatre = "images/plage.png";
-const cinq = "images/plaine.jpg";
-const six = "images/urbbain.jpg";
-const pathImgPrincipale = [un, deux, trois, quatre, cinq, six];
+const pathImgPrincipale = ["images/foret.jpg", "images/lac.jpg", "images/montagne.png", "images/plage.png", "images/plaine.jpg", "images/urbbain.jpg"];
 
 //Events
 btnSuivant.addEventListener("click", ChangerImagePrincipaleManuelle, false);
@@ -31,6 +25,8 @@ btnPrecedent.addEventListener("click", ChangerImagePrincipaleManuelle, false);
 //Fonctions
 function ChangerImagePrincipaleManuelle(e)
 {
+    RetirerClassVignettes();
+
     let nouvelleImage = "";
     indexImageEnCours = IndexImagePrincipaleEnCours();
 
@@ -60,6 +56,7 @@ function ChangerImagePrincipaleManuelle(e)
         }
     }
 
+    VignetteAfficher(indexImageEnCours);
     imagePrincipale.src = nouvelleImage;
 }
 
@@ -75,4 +72,42 @@ function IndexImagePrincipaleEnCours()
     }
 
     return indexImageEnCours;
+}
+
+function VignetteAfficher(indexImageEnCours)
+{
+    if (indexImageEnCours == 0)
+    {
+        vignette1.className = "imageEnCours";
+    }
+    else if (indexImageEnCours == 1)
+    {
+        vignette2.className = "imageEnCours";
+    }
+    else if (indexImageEnCours == 2)
+    {
+        vignette3.className = "imageEnCours";
+    }
+    else if (indexImageEnCours == 3)
+    {
+        vignette4.className = "imageEnCours";
+    }
+    else if (indexImageEnCours == 4)
+    {
+        vignette5.className = "imageEnCours";
+    }
+    else if (indexImageEnCours == 5)
+    {
+        vignette6.className = "imageEnCours";
+    }
+}
+
+function RetirerClassVignettes()
+{
+    vignette1.className = "";
+    vignette2.className = "";
+    vignette3.className = "";
+    vignette4.className = "";
+    vignette5.className = "";
+    vignette6.className = "";
 }

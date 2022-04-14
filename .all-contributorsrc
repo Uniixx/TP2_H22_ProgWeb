@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Dawood2201",
+      "name": "Dawood2201",
+      "avatar_url": "https://avatars.githubusercontent.com/u/97983068?v=4",
+      "profile": "https://github.com/Dawood2201",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "TP2_H22_ProgWeb",
+  "projectOwner": "Uniixx",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

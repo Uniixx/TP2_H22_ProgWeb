@@ -14,16 +14,23 @@ let vignette3 = document.getElementById("vignnetteTrois");
 let vignette4 = document.getElementById("vignnetteQuatre");
 let vignette5 = document.getElementById("vignnetteCinq");
 let vignette6 = document.getElementById("vignnetteSix");
+const tabVignettes = [vignette1, vignette2, vignette3, vignette4, vignette5, vignette6];
 
-//Array Path Images Principale
 const pathImgPrincipale = ["images/foret.jpg", "images/lac.jpg", "images/montagne.png", "images/plage.png", "images/plaine.jpg", "images/urbbain.jpg"];
 
+//Minuterie
+let timer = setInterval(ChangerImageAutomatique, 1000);
+
 //Events
-btnSuivant.addEventListener("click", ChangerImagePrincipaleManuelle, false);
-btnPrecedent.addEventListener("click", ChangerImagePrincipaleManuelle, false);
+btnSuivant.addEventListener("click", ChangerImgPrincipaleSuivantPrecedent, false);
+btnPrecedent.addEventListener("click", ChangerImgPrincipaleSuivantPrecedent, false);
+
+for (let indexTabVignettes = 0; indexTabVignettes < tabVignettes.length; indexTabVignettes++) {
+    tabVignettes[indexTabVignettes].addEventListener("click", CliqueVignetteChangeImgPrincipale, false);
+}
 
 //Fonctions
-function ChangerImagePrincipaleManuelle(e)
+function ChangerImgPrincipaleSuivantPrecedent(e)
 {
     RetirerClassVignettes();
 
@@ -74,6 +81,7 @@ function IndexImagePrincipaleEnCours()
     return indexImageEnCours;
 }
 
+//Affiche la bordure rouge autour de la vignette en cours
 function VignetteAfficher(indexImageEnCours)
 {
     if (indexImageEnCours == 0)
@@ -110,4 +118,53 @@ function RetirerClassVignettes()
     vignette4.className = "";
     vignette5.className = "";
     vignette6.className = "";
+}
+
+function CliqueVignetteChangeImgPrincipale(e)
+{
+    RetirerClassVignettes();
+
+    switch (e.target.id) 
+    {
+        case ("vignnetteUn"):
+            imagePrincipale.src = pathImgPrincipale[0];
+            indexImageEnCours = 0;
+            break;
+
+        case ("vignnetteDeux"):
+            imagePrincipale.src = pathImgPrincipale[1];
+            indexImageEnCours = 1;
+            break;
+
+        case ("vignnetteTrois"):
+            imagePrincipale.src = pathImgPrincipale[2];
+            indexImageEnCours = 2;
+            break;
+
+        case ("vignnetteQuatre"):
+            imagePrincipale.src = pathImgPrincipale[3];
+            indexImageEnCours = 3;
+            break;
+
+        case ("vignnetteCinq"):
+            imagePrincipale.src = pathImgPrincipale[4];
+            indexImageEnCours = 4;
+            break;
+
+        case ("vignnetteSix"):
+            imagePrincipale.src = pathImgPrincipale[5];
+            indexImageEnCours = 5;
+            break;
+
+        default:
+            break;
+    }
+
+    VignetteAfficher(indexImageEnCours);
+
+}
+
+function ChangerImageAutomatique()
+{
+    console.log("Test");
 }

@@ -8,14 +8,70 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>TP2_H22 - Formulaire</title>
 
-    <script href="js/visionneuse.js" defer></script>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/formulaire.css">
+    <script src="js/formulaire.js" defer></script>
 </head>
 
 <body>
     <header></header>
-    <main></main>
+    <main>
+        <div class="errorBox" id="boite_erreurs">
+            <ul id="liste_erreur">
+
+            </ul>
+        </div>
+        <form method="post" action="mailto:kf@MaCompagnie.com?subject=AjoutClient" id="formulaire">
+            <div>
+                <label for="nom_utilisateur">Nom d'utilisateur:</label>
+                <input type="text" name="nom_utilisateur" id="nom_utilisateur">
+            </div>
+            <div>
+                <label for="mot_de_passe">Mot de passe:</label>
+                <input type="password" name="mot_de_passe" id="mot_de_passe">
+            </div>
+            <div>
+                <label for="c_mot_de_passe">Confirmation de mot de passe:</label>
+                <input type="password" name="c_mot_de_passe" id="c_mot_de_passe">
+            </div>
+            <div>
+                <label for="prenom">Prénom:</label>
+                <input type="text" name="prenom" id="prenom">
+            </div>
+            <div>
+                <label for="nom">Nom:</label>
+                <input type="text" name="nom" id="nom">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <div>
+                <label for="date_de_naissance">Date de naissance:</label>
+                <input type="date" name="date_de_naissance" id="date_de_naissance">
+            </div>
+            <div id="exclus">
+                <label for="preferences">Paysage(s) préféré(s):</label>
+                <div>
+                    <input type="checkbox" name="Fôret" id="foret">
+                    <label for="foret">Fôret</label>
+                    <input type="checkbox" name="Montagne" id="montagne">
+                    <label for="montagne">Montagne</label>
+                    <input type="checkbox" name="Littoraux" id="litorraux">
+                    <label for="littoraux">Litorraux</label>
+                    <input type="checkbox" name="Urbain" id="urbain">
+                    <label for="urbain">Urbain</label>
+                    <input type="checkbox" name="Plaine" id="plaine">
+                    <label for="plaine">Plaine</label>
+                    <input type="checkbox" name="Désertique" id="desertique">
+                    <label for="desertique">Désertique</label>
+                </div>
+            </div>
+            <div>
+                <input type="submit" value="Transmettre">
+            </div>
+        </form>
+    </main>
     <footer></footer>
 </body>
 

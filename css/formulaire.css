@@ -1,1 +1,30 @@
 /* CSS Formulaire */
+
+div {
+    margin-bottom: 20px;
+}
+
+div>label {
+    display: inline-block;
+    width: 250px;
+    font-weight: bold;
+}
+
+div#exclus label {
+    display: inline;
+}
+
+.errorBox {
+    display: none;
+    max-width: 600px;
+    min-height: 50px;
+    background-color: rgb(255, 96, 96);
+    border: 5px dashed rgb(252, 79, 79);
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.error {
+    border: 3px dashed rgb(252, 79, 79);
+}

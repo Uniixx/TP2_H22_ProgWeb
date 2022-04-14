@@ -3,12 +3,6 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-<a href="https://github.com/Uniixx/TP2_H22_ProgWeb/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Uniixx/TP2_H22_ProgWeb" />
-</a>
-
-Made with [contrib.rocks](https://contrib.rocks).
-
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

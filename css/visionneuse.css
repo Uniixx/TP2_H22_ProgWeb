@@ -6,6 +6,7 @@ main
 button
 {
     width: 100px;
+    height: 25px;
 }
 .imageEnCours
 {
@@ -14,7 +15,7 @@ button
 #menuVisionneuse select
 {
     width: 100px;
-    margin-left: 20px;
+    height: 25px;
 }
 #vignettes img
 {
@@ -27,7 +28,7 @@ button
 }
 #menuVisionneuse button
 {
-    margin: 5px 20px;
+    margin: 0px 20px 10px 0px;
 }
 #vignettes > ul
 {
@@ -39,4 +40,16 @@ button
     list-style: none;
     padding: 0;
     margin: 0;
+}
+#menuVisionneuse > ul > li:last-of-type > p
+{
+    border-bottom: 1px solid rgb(0, 0, 0);
+    width: 100px;
+    margin: 0px 0px 5px 0px;
+}
+#menuVisionneuse > ul > li:first-of-type > p
+{
+    border-bottom: 1px solid rgb(0, 0, 0);
+    width: 100px;
+    margin: 0px 0px 5px 0px;
 }

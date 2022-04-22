@@ -254,6 +254,7 @@ function ChangerVitesseVisionneuse(e) {
 
 function DelaiTroisSecondesMinuterie() {
     if (btnArret.textContent == "Arrêt") {
+        
         clearInterval(timer);
 
         if (lstDeroulanteVitesseVisionneuse.value === "lent") {

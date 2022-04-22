@@ -25,6 +25,7 @@ button
 #vignettes img
 {
     margin-right: 2px;
+    cursor: pointer;
 }
 #vignettes li
 {

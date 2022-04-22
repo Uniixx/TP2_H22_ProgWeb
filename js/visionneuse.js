@@ -33,48 +33,37 @@ let timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
 btnArret.addEventListener("click", ActiverDesactiverChangementAutomatique, false);
 lstDeroulanteVitesseVisionneuse.addEventListener("change", ChangerVitesseVisionneuse, false);
 
-for (let indexTabBtn = 0; indexTabBtn < tabBtnSuivantPrecedent.length; indexTabBtn++)
-{
+for (let indexTabBtn = 0; indexTabBtn < tabBtnSuivantPrecedent.length; indexTabBtn++) {
     tabBtnSuivantPrecedent[indexTabBtn].addEventListener("click", ChangerImgPrincipaleSuivantPrecedent, false);
     tabBtnSuivantPrecedent[indexTabBtn].addEventListener("click", DelaiTroisSecondesMinuterie, false);
 }
 
-for (let indexTabVignettes = 0; indexTabVignettes < tabVignettes.length; indexTabVignettes++)
-{
+for (let indexTabVignettes = 0; indexTabVignettes < tabVignettes.length; indexTabVignettes++) {
     tabVignettes[indexTabVignettes].addEventListener("click", CliqueVignetteChangeImgPrincipale, false);
     tabVignettes[indexTabVignettes].addEventListener("click", DelaiTroisSecondesMinuterie, false);
 }
 
 /*                  Fonctions                   */
-function ChangerImgPrincipaleSuivantPrecedent(e)
-{
+function ChangerImgPrincipaleSuivantPrecedent(e) {
     RetirerClassesVignettes();
 
     let nouvelleImage = "";
     indexImageEnCours = IndexImagePrincipaleEnCours();
 
-    if(e.target.id === "suivant")
-    {
-        if(indexImageEnCours == 5)
-        {
+    if (e.target.id === "suivant") {
+        if (indexImageEnCours == 5) {
             nouvelleImage = pathImgPrincipale[0];
             indexImageEnCours = 0;
-        }
-        else
-        {
+        } else {
             nouvelleImage = pathImgPrincipale[++indexImageEnCours];
         }
     }
 
-    if (e.target.id === "precedent")
-    {
-        if (indexImageEnCours == 0)
-        {
+    if (e.target.id === "precedent") {
+        if (indexImageEnCours == 0) {
             nouvelleImage = pathImgPrincipale[5];
             indexImageEnCours = 5;
-        }
-        else
-        {
+        } else {
             nouvelleImage = pathImgPrincipale[--indexImageEnCours];
         }
     }
@@ -84,12 +73,9 @@ function ChangerImgPrincipaleSuivantPrecedent(e)
 }
 
 //Retourne l'index du array de path [0] à [5]
-function IndexImagePrincipaleEnCours()
-{
-    for (let index = 0; index < pathImgPrincipale.length; index++)
-    {
-        if (imagePrincipale.src == pathImgPrincipale[index])
-        {
+function IndexImagePrincipaleEnCours() {
+    for (let index = 0; index < pathImgPrincipale.length; index++) {
+        if (imagePrincipale.src == pathImgPrincipale[index]) {
             indexImageEnCours = index;
         }
     }
@@ -98,68 +84,42 @@ function IndexImagePrincipaleEnCours()
 }
 
 //Affiche la bordure rouge autour de la vignette en cours
-function AfficherBordureVignettes()
-{
-    if (indexImageEnCours == 0)
-    {
+function AfficherBordureVignettes() {
+    if (indexImageEnCours == 0) {
         vignette1.className = "imageEnCours";
-    }
-    else if (indexImageEnCours == 1)
-    {
+    } else if (indexImageEnCours == 1) {
         vignette2.className = "imageEnCours";
-    }
-    else if (indexImageEnCours == 2)
-    {
+    } else if (indexImageEnCours == 2) {
         vignette3.className = "imageEnCours";
-    }
-    else if (indexImageEnCours == 3)
-    {
+    } else if (indexImageEnCours == 3) {
         vignette4.className = "imageEnCours";
-    }
-    else if (indexImageEnCours == 4)
-    {
+    } else if (indexImageEnCours == 4) {
         vignette5.className = "imageEnCours";
-    }
-    else if (indexImageEnCours == 5)
-    {
+    } else if (indexImageEnCours == 5) {
         vignette6.className = "imageEnCours";
     }
 }
 
-function RetirerClassesVignettes()
-{
-    if(vignette1.className === "imageEnCours")
-    {
+function RetirerClassesVignettes() {
+    if (vignette1.className === "imageEnCours") {
         vignette1.className = "";
-    }
-    else if(vignette2.className === "imageEnCours")
-    {
+    } else if (vignette2.className === "imageEnCours") {
         vignette2.className = "";
-    }
-    else if(vignette3.className === "imageEnCours")
-    {
+    } else if (vignette3.className === "imageEnCours") {
         vignette3.className = "";
-    }
-    else if(vignette4.className === "imageEnCours")
-    {
+    } else if (vignette4.className === "imageEnCours") {
         vignette4.className = "";
-    }
-    else if(vignette5.className === "imageEnCours")
-    {
+    } else if (vignette5.className === "imageEnCours") {
         vignette5.className = "";
-    }
-    else
-    {
+    } else {
         vignette6.className = "";
     }
 }
 
-function CliqueVignetteChangeImgPrincipale(e)
-{
+function CliqueVignetteChangeImgPrincipale(e) {
     RetirerClassesVignettes();
 
-    switch (e.target.id) 
-    {
+    switch (e.target.id) {
         case ("vignnetteUn"):
             imagePrincipale.src = pathImgPrincipale[0];
             indexImageEnCours = 0;
@@ -198,120 +158,89 @@ function CliqueVignetteChangeImgPrincipale(e)
 
 }
 
-function ChangerImageAutomatique()
-{
-    if(changerImageAutomatiqueTrueFalse == true)
-    {
+function ChangerImageAutomatique() {
+    if (changerImageAutomatiqueTrueFalse == true) {
         indexImageEnCours = IndexImagePrincipaleEnCours();
 
         let nouvelleImage = "";
 
-        if (indexImageEnCours == 5)
-        {
+        if (indexImageEnCours == 5) {
             nouvelleImage = pathImgPrincipale[0];
             indexImageEnCours = 0;
-        }
-        else
-        {
+        } else {
             nouvelleImage = pathImgPrincipale[++indexImageEnCours];
         }
-        
+
         RetirerClassesVignettes();
         imagePrincipale.src = nouvelleImage;
         AfficherBordureVignettes();
     }
 }
 
-function ActiverDesactiverChangementAutomatique()
-{
+function ActiverDesactiverChangementAutomatique() {
 
     vitesseSelectionne = lstDeroulanteVitesseVisionneuse.value;
 
-    if(btnArret.textContent == "Arrêt")
-    {
+    if (btnArret.textContent == "Arrêt") {
         btnArret.textContent = "Activer";
         changerImageAutomatiqueTrueFalse = false;
         clearInterval(timer);
-    }
-    else
-    {
+    } else {
         btnArret.textContent = "Arrêt";
         changerImageAutomatiqueTrueFalse = true;
 
-        if (vitesseSelectionne == "lent")
-        {
+        if (vitesseSelectionne == "lent") {
             clearInterval(timer);
             timer = setInterval(ChangerImageAutomatique, vitesseLente);
-        }
-        else if(vitesseSelectionne == "moyen")
-        {
+        } else if (vitesseSelectionne == "moyen") {
             clearInterval(timer);
             timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
-        }
-        else if(vitesseSelectionne == "rapide")
-        {
+        } else if (vitesseSelectionne == "rapide") {
             clearInterval(timer);
             timer = setInterval(ChangerImageAutomatique, vitesseRapide);
         }
-        
+
     }
 }
 
-function ChangerVitesseVisionneuse(e)
-{
-        if(e.target.value == "lent")
-        {
-            clearInterval(timer);
-            timer = setInterval(ChangerImageAutomatique, vitesseLente);
-        }
-
-        if(e.target.value == "moyen")
-        {
-            clearInterval(timer);
-            timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
-        }
-
-        if(e.target.value == "rapide")
-        {
-            clearInterval(timer);
-            timer = setInterval(ChangerImageAutomatique, vitesseRapide);
-        }
-}
-
-function DelaiTroisSecondesMinuterie()
-{
-    if (btnArret.textContent == "Arrêt")
-    {
+function ChangerVitesseVisionneuse(e) {
+    if (e.target.value == "lent") {
         clearInterval(timer);
-
-        if (lstDeroulanteVitesseVisionneuse.value === "lent")
-        {
-            timer = setTimeout(RelancerVisionneuse, 1500);
-        }
-        else if(lstDeroulanteVitesseVisionneuse.value === "moyen")
-        {
-            timer = setTimeout(RelancerVisionneuse, 2000);
-        }
-        else
-        {
-            timer = setTimeout(RelancerVisionneuse, 2500);
-        }
-        
-    }
-}
-
-function RelancerVisionneuse()
-{
-    if (lstDeroulanteVitesseVisionneuse.value === "lent")
-    {
         timer = setInterval(ChangerImageAutomatique, vitesseLente);
     }
-    else if (lstDeroulanteVitesseVisionneuse.value === "moyen")
-    {
+
+    if (e.target.value == "moyen") {
+        clearInterval(timer);
         timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
     }
-    else
-    {
+
+    if (e.target.value == "rapide") {
+        clearInterval(timer);
         timer = setInterval(ChangerImageAutomatique, vitesseRapide);
-    } 
+    }
+}
+
+function DelaiTroisSecondesMinuterie() {
+    if (btnArret.textContent == "Arrêt") {
+        clearInterval(timer);
+
+        if (lstDeroulanteVitesseVisionneuse.value === "lent") {
+            timer = setTimeout(RelancerVisionneuse, 1500);
+        } else if (lstDeroulanteVitesseVisionneuse.value === "moyen") {
+            timer = setTimeout(RelancerVisionneuse, 2000);
+        } else {
+            timer = setTimeout(RelancerVisionneuse, 2500);
+        }
+
+    }
+}
+
+function RelancerVisionneuse() {
+    if (lstDeroulanteVitesseVisionneuse.value === "lent") {
+        timer = setInterval(ChangerImageAutomatique, vitesseLente);
+    } else if (lstDeroulanteVitesseVisionneuse.value === "moyen") {
+        timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
+    } else {
+        timer = setInterval(ChangerImageAutomatique, vitesseRapide);
+    }
 }

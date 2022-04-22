@@ -1,47 +1,54 @@
 "use strict";
 
-//Initialisation de mes variables
+/*                  Initialisation de mes variables                 */
 let imagePrincipale = document.getElementById("imagePrincipale");
 let btnSuivant = document.getElementById("suivant");
 let btnPrecedent = document.getElementById("precedent");
 let btnArret = document.getElementById("arret");
-let indexImageEnCours = 0;
-let vitesseImageAutomatique = document.getElementById("vitesseVisionneuse");
+let lstDeroulanteVitesseVisionneuse = document.getElementById("vitesseVisionneuse");
+let vitesseSelectionne = lstDeroulanteVitesseVisionneuse.value;
 let changerImageAutomatiqueTrueFalse = true;
-let vitesseDeBase = vitesseImageAutomatique.value;
-let vitesseSelectionne = vitesseImageAutomatique.value;
+let indexImageEnCours = 0;
 
-//Variable de mes vignettes
+/*                  Variable de mes vignettes                   */
 let vignette1 = document.getElementById("vignnetteUn");
 let vignette2 = document.getElementById("vignnetteDeux");
 let vignette3 = document.getElementById("vignnetteTrois");
 let vignette4 = document.getElementById("vignnetteQuatre");
 let vignette5 = document.getElementById("vignnetteCinq");
 let vignette6 = document.getElementById("vignnetteSix");
-const tabVignettes = [vignette1, vignette2, vignette3, vignette4, vignette5, vignette6];
 
+/*                  Tableaux de variables                   */
+const tabBtnSuivantPrecedent = [btnSuivant, btnPrecedent];
+const tabVignettes = [vignette1, vignette2, vignette3, vignette4, vignette5, vignette6];
 const pathImgPrincipale = ["images/foret.jpg", "images/lac.jpg", "images/montagne.png", "images/plage.png", "images/plaine.jpg", "images/urbbain.jpg"];
 
-//Minuterie
+/*                         Minuterie                    */
 const vitesseLente = 1500;
 const vitesseMoyenne = 1000;
 const vitesseRapide = 500;
 let timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
 
-//Events
-btnSuivant.addEventListener("click", ChangerImgPrincipaleSuivantPrecedent, false);
-btnPrecedent.addEventListener("click", ChangerImgPrincipaleSuivantPrecedent, false);
+/*                  Création de mes events                  */
 btnArret.addEventListener("click", ActiverDesactiverChangementAutomatique, false);
-vitesseImageAutomatique.addEventListener("change", ChangerVitesseVisionneuse, false);
+lstDeroulanteVitesseVisionneuse.addEventListener("change", ChangerVitesseVisionneuse, false);
 
-for (let indexTabVignettes = 0; indexTabVignettes < tabVignettes.length; indexTabVignettes++) {
-    tabVignettes[indexTabVignettes].addEventListener("click", CliqueVignetteChangeImgPrincipale, false);
+for (let indexTabBtn = 0; indexTabBtn < tabBtnSuivantPrecedent.length; indexTabBtn++)
+{
+    tabBtnSuivantPrecedent[indexTabBtn].addEventListener("click", ChangerImgPrincipaleSuivantPrecedent, false);
+    tabBtnSuivantPrecedent[indexTabBtn].addEventListener("click", DelaiTroisSecondesMinuterie, false);
 }
 
-//Fonctions
+for (let indexTabVignettes = 0; indexTabVignettes < tabVignettes.length; indexTabVignettes++)
+{
+    tabVignettes[indexTabVignettes].addEventListener("click", CliqueVignetteChangeImgPrincipale, false);
+    tabVignettes[indexTabVignettes].addEventListener("click", DelaiTroisSecondesMinuterie, false);
+}
+
+/*                  Fonctions                   */
 function ChangerImgPrincipaleSuivantPrecedent(e)
 {
-    RetirerClassVignettes();
+    RetirerClassesVignettes();
 
     let nouvelleImage = "";
     indexImageEnCours = IndexImagePrincipaleEnCours();
@@ -72,7 +79,7 @@ function ChangerImgPrincipaleSuivantPrecedent(e)
         }
     }
 
-    VignetteAfficher(indexImageEnCours);
+    AfficherBordureVignettes(indexImageEnCours);
     imagePrincipale.src = nouvelleImage;
 }
 
@@ -91,7 +98,7 @@ function IndexImagePrincipaleEnCours()
 }
 
 //Affiche la bordure rouge autour de la vignette en cours
-function VignetteAfficher()
+function AfficherBordureVignettes()
 {
     if (indexImageEnCours == 0)
     {
@@ -119,19 +126,37 @@ function VignetteAfficher()
     }
 }
 
-function RetirerClassVignettes()
+function RetirerClassesVignettes()
 {
-    vignette1.className = "";
-    vignette2.className = "";
-    vignette3.className = "";
-    vignette4.className = "";
-    vignette5.className = "";
-    vignette6.className = "";
+    if(vignette1.className === "imageEnCours")
+    {
+        vignette1.className = "";
+    }
+    else if(vignette2.className === "imageEnCours")
+    {
+        vignette2.className = "";
+    }
+    else if(vignette3.className === "imageEnCours")
+    {
+        vignette3.className = "";
+    }
+    else if(vignette4.className === "imageEnCours")
+    {
+        vignette4.className = "";
+    }
+    else if(vignette5.className === "imageEnCours")
+    {
+        vignette5.className = "";
+    }
+    else
+    {
+        vignette6.className = "";
+    }
 }
 
 function CliqueVignetteChangeImgPrincipale(e)
 {
-    RetirerClassVignettes();
+    RetirerClassesVignettes();
 
     switch (e.target.id) 
     {
@@ -169,7 +194,7 @@ function CliqueVignetteChangeImgPrincipale(e)
             break;
     }
 
-    VignetteAfficher(indexImageEnCours);
+    AfficherBordureVignettes(indexImageEnCours);
 
 }
 
@@ -191,37 +216,42 @@ function ChangerImageAutomatique()
             nouvelleImage = pathImgPrincipale[++indexImageEnCours];
         }
         
-        RetirerClassVignettes();
+        RetirerClassesVignettes();
         imagePrincipale.src = nouvelleImage;
-        VignetteAfficher();
+        AfficherBordureVignettes();
     }
 }
 
-function ActiverDesactiverChangementAutomatique(e)
+function ActiverDesactiverChangementAutomatique()
 {
-    if(e.target.textContent == "Arrêt")
+
+    vitesseSelectionne = lstDeroulanteVitesseVisionneuse.value;
+
+    if(btnArret.textContent == "Arrêt")
     {
-        console.log(vitesseSelectionne);
-        e.target.textContent = "Activer";
+        btnArret.textContent = "Activer";
         changerImageAutomatiqueTrueFalse = false;
         clearInterval(timer);
     }
     else
     {
-        console.log(vitesseSelectionne);
-        e.target.textContent = "Arrêt";
+        btnArret.textContent = "Arrêt";
         changerImageAutomatiqueTrueFalse = true;
 
-        if(vitesseSelectionne == "moyen")
+        if (vitesseSelectionne == "lent")
         {
-            vitesseSelectionne = vitesseMoyenne;
             clearInterval(timer);
-            timer = setInterval(ChangerImageAutomatique, vitesseSelectionne);
+            timer = setInterval(ChangerImageAutomatique, vitesseLente);
         }
-        else
+        else if(vitesseSelectionne == "moyen")
         {
             clearInterval(timer);
-            timer = setInterval(ChangerImageAutomatique, vitesseSelectionne);
+            timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
+        }
+        else if(vitesseSelectionne == "rapide")
+        {
+            clearInterval(timer);
+            timer = setInterval(ChangerImageAutomatique, vitesseRapide);
         }
         
     }
@@ -231,22 +261,57 @@ function ChangerVitesseVisionneuse(e)
 {
         if(e.target.value == "lent")
         {
-            vitesseSelectionne = vitesseLente;
             clearInterval(timer);
-            timer = setInterval(ChangerImageAutomatique, vitesseSelectionne);
+            timer = setInterval(ChangerImageAutomatique, vitesseLente);
         }
 
         if(e.target.value == "moyen")
         {
-            vitesseSelectionne = vitesseMoyenne;
             clearInterval(timer);
-            timer = setInterval(ChangerImageAutomatique, vitesseSelectionne);
+            timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
         }
 
         if(e.target.value == "rapide")
         {
-            vitesseSelectionne = vitesseRapide;
             clearInterval(timer);
-            timer = setInterval(ChangerImageAutomatique, vitesseSelectionne);
+            timer = setInterval(ChangerImageAutomatique, vitesseRapide);
         }
+}
+
+function DelaiTroisSecondesMinuterie()
+{
+    if (btnArret.textContent == "Arrêt")
+    {
+        clearInterval(timer);
+
+        if (lstDeroulanteVitesseVisionneuse.value === "lent")
+        {
+            timer = setTimeout(RelancerVisionneuse, 1500);
+        }
+        else if(lstDeroulanteVitesseVisionneuse.value === "moyen")
+        {
+            timer = setTimeout(RelancerVisionneuse, 2000);
+        }
+        else
+        {
+            timer = setTimeout(RelancerVisionneuse, 2500);
+        }
+        
+    }
+}
+
+function RelancerVisionneuse()
+{
+    if (lstDeroulanteVitesseVisionneuse.value === "lent")
+    {
+        timer = setInterval(ChangerImageAutomatique, vitesseLente);
+    }
+    else if (lstDeroulanteVitesseVisionneuse.value === "moyen")
+    {
+        timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
+    }
+    else
+    {
+        timer = setInterval(ChangerImageAutomatique, vitesseRapide);
+    } 
 }

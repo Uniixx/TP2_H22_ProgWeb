@@ -85,31 +85,49 @@ function IndexImagePrincipaleEnCours() {
 
 //Affiche la bordure rouge autour de la vignette en cours
 function AfficherBordureVignettes() {
-    if (indexImageEnCours == 0) {
-        vignette1.className = "imageEnCours";
-    } else if (indexImageEnCours == 1) {
-        vignette2.className = "imageEnCours";
-    } else if (indexImageEnCours == 2) {
-        vignette3.className = "imageEnCours";
-    } else if (indexImageEnCours == 3) {
-        vignette4.className = "imageEnCours";
-    } else if (indexImageEnCours == 4) {
-        vignette5.className = "imageEnCours";
-    } else if (indexImageEnCours == 5) {
-        vignette6.className = "imageEnCours";
+    switch (indexImageEnCours) {
+        case 0:
+            vignette1.className = "imageEnCours";
+            break;
+        case 1:
+            vignette2.className = "imageEnCours";
+            break;
+
+        case 2:
+            vignette3.className = "imageEnCours";
+            break;
+
+        case 3:
+            vignette4.className = "imageEnCours";
+            break;
+
+        case 4:
+            vignette5.className = "imageEnCours";
+            break;
+
+        case 5:
+            vignette6.className = "imageEnCours";
+            break;
+        default:
+            break;
     }
 }
 
 function RetirerClassesVignettes() {
-    if (vignette1.className === "imageEnCours") {
+    if (vignette1.className === "imageEnCours") 
+    {
         vignette1.className = "";
-    } else if (vignette2.className === "imageEnCours") {
+    } else if (vignette2.className === "imageEnCours") 
+    {
         vignette2.className = "";
-    } else if (vignette3.className === "imageEnCours") {
+    } else if (vignette3.className === "imageEnCours") 
+    {
         vignette3.className = "";
-    } else if (vignette4.className === "imageEnCours") {
+    } else if (vignette4.className === "imageEnCours") 
+    {
         vignette4.className = "";
-    } else if (vignette5.className === "imageEnCours") {
+    } else if (vignette5.className === "imageEnCours") 
+    {
         vignette5.className = "";
     } else {
         vignette6.className = "";
@@ -189,34 +207,48 @@ function ActiverDesactiverChangementAutomatique() {
         btnArret.textContent = "Arrêt";
         changerImageAutomatiqueTrueFalse = true;
 
-        if (vitesseSelectionne == "lent") {
-            clearInterval(timer);
-            timer = setInterval(ChangerImageAutomatique, vitesseLente);
-        } else if (vitesseSelectionne == "moyen") {
-            clearInterval(timer);
-            timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
-        } else if (vitesseSelectionne == "rapide") {
-            clearInterval(timer);
-            timer = setInterval(ChangerImageAutomatique, vitesseRapide);
-        }
+        switch (vitesseSelectionne) {
+            case "lent":
+                clearInterval(timer);
+                timer = setInterval(ChangerImageAutomatique, vitesseLente);
+                break;
 
+            case "moyen":
+                clearInterval(timer);
+                timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
+                break;
+
+            case "rapide":
+                clearInterval(timer);
+                timer = setInterval(ChangerImageAutomatique, vitesseRapide);
+                break;
+        
+            default:
+                break;
+        }
     }
 }
 
 function ChangerVitesseVisionneuse(e) {
-    if (e.target.value == "lent") {
-        clearInterval(timer);
-        timer = setInterval(ChangerImageAutomatique, vitesseLente);
-    }
 
-    if (e.target.value == "moyen") {
-        clearInterval(timer);
-        timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
-    }
+    switch (e.target.value) {
+        case "lent":
+            clearInterval(timer);
+            timer = setInterval(ChangerImageAutomatique, vitesseLente);
+            break;
 
-    if (e.target.value == "rapide") {
-        clearInterval(timer);
-        timer = setInterval(ChangerImageAutomatique, vitesseRapide);
+        case "moyen":
+            clearInterval(timer);
+            timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
+            break;
+
+        case "rapide":
+            clearInterval(timer);
+            timer = setInterval(ChangerImageAutomatique, vitesseRapide);
+            break;
+
+        default:
+            break;
     }
 }
 

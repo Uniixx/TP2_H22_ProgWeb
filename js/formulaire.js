@@ -1,11 +1,6 @@
 const formulaire = document.getElementById('formulaire');
 const boite_erreur = document.getElementById('boite_erreurs');
 
-const regex_mdp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%* #=+\(\)\^?&])[A-Za-z\d$@$!%* #=+\(\)\^?&]{3,}$/;
-
-// regex src: https://stackoverflow.com/a/46181/18457167
-const regex_email = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
 const champs = {
     nom_utilisateur: document.getElementById('nom_utilisateur'),
     mot_de_passe: document.getElementById('mot_de_passe'),
@@ -65,7 +60,7 @@ function validation() {
         }
     }
 
-    if (!champs.mot_de_passe.value.match(regex_mdp)) {
+    if (verifierMotDePasseCharSpecial(champs.mot_de_passe.value) || verifierMotDePasseChiffres(champs.mot_de_passe.value) || verifierMotDePasse(champs.mot_de_passe.value)) {
         erreurs.push({ message: "Le champ mot de passe doit contenir au minimum un chiffre et un charactère spécial.", order: 3 });
         ajouterErreurChamp(champs.mot_de_passe);
     }
@@ -75,7 +70,7 @@ function validation() {
         ajouterErreurChamp(champs.c_mot_de_passe);
     }
 
-    if (!verifierChampVide(champs.email.value) && !champs.email.value.match(regex_email)) {
+    if (!verifierChampVide(champs.email.value) && verifierCourriel(champs.email.value)) {
         erreurs.push({ message: "Le champ courriel doit être valide (abc@abc.com).", order: 8 });
         ajouterErreurChamp(champs.email);
     }
@@ -109,6 +104,58 @@ function validation() {
 
 function verifierChampVide(champ) {
     return champ.length === 0;
+}
+
+function verifierMotDePasseCharSpecial(mdp) {
+    const chars = /[!@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?]+/;
+
+    for (let i = 0; i < chars.length; i++) {
+        if (chars.indexOf(mdp.charAt(i)) != -1) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function verifierMotDePasseChiffres(mdp) {
+    for (let i = 0; i < mdp.length; i++) {
+        if (!isNaN(Number(mdp[i]))) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function verifierMotDePasse(mdp) {
+    let letters = "abcdefghijklmnopqrstuvwxyz";
+    mdp = mdp.toLowerCase();
+
+    for (let i = 0; i < letters.length; i++) {
+        if (mdp.includes(letters[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function verifierCourriel(courriel) {
+    if (courriel[0] === "@" || courriel[courriel.length - 1] === "@") {
+        return true;
+    }
+
+    if (!courriel.includes(".")) {
+        return true;
+    }
+
+    for (let i = courriel.indexOf("@"); i < courriel.length; i++) {
+        if (i === courriel.length - 1 && courriel[i] === ".") {
+            return true;
+        }
+    }
+
+    if (courriel.split("@").pop().split(".")[0] === "") {
+        return true;
+    }
 }
 
 function filtrerCheckboxs(checks) {

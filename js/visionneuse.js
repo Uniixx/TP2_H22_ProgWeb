@@ -7,6 +7,7 @@ let btnPrecedent = document.getElementById("precedent");
 let btnArret = document.getElementById("arret");
 let lstDeroulanteVitesseVisionneuse = document.getElementById("vitesseVisionneuse");
 let vitesseSelectionne = lstDeroulanteVitesseVisionneuse.value;
+let spanStatut = document.getElementById("spStatut");
 let changerImageAutomatiqueTrueFalse = true;
 let indexImageEnCours = 0;
 
@@ -201,10 +202,14 @@ function ActiverDesactiverChangementAutomatique() {
 
     if (btnArret.textContent == "Arrêt") {
         btnArret.textContent = "Activer";
+        spanStatut.className = "chgAutoDesactivé";
+        spanStatut.textContent = "Innactif"
         changerImageAutomatiqueTrueFalse = false;
         clearInterval(timer);
     } else {
         btnArret.textContent = "Arrêt";
+        spanStatut.textContent = "Actif"
+        spanStatut.className = "chgAutoActif";
         changerImageAutomatiqueTrueFalse = true;
 
         switch (vitesseSelectionne) {
@@ -254,7 +259,7 @@ function ChangerVitesseVisionneuse(e) {
 
 function DelaiTroisSecondesMinuterie() {
     if (btnArret.textContent == "Arrêt") {
-        
+
         clearInterval(timer);
 
         if (lstDeroulanteVitesseVisionneuse.value === "lent") {

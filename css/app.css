@@ -33,6 +33,11 @@ footer {
     background-color: #f07167;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: ". copyrights .";
+}
+
+.copyrights {
+    grid-area: copyrights;
 }
 
 nav>ul {

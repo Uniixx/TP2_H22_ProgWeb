@@ -10,6 +10,10 @@ div>label {
     font-weight: bold;
 }
 
+div#exclus {
+    width: 600px;
+}
+
 div#exclus label {
     display: inline;
 }

@@ -15,6 +15,7 @@ const champs = {
     email: document.getElementById('email'),
     date_de_naissance: document.getElementById('date_de_naissance'),
     liste_erreur: document.getElementById('liste_erreur'),
+    checkbox: document.getElementById('exclus')
 }
 
 formulaire.addEventListener('submit', envoyerFormulaire);
@@ -27,7 +28,6 @@ function envoyerFormulaire(evt) {
 
 function validation() {
     let checkboxs = document.querySelectorAll('input[type=checkbox]');
-
     let erreurs = [];
 
     checkboxs = filtrerCheckboxs(checkboxs);
@@ -95,6 +95,7 @@ function validation() {
 
     if (verifierChampVide(checkboxs) || checkboxs.length > 2) {
         erreurs.push("Le champ préférences doit avoir entre une et deux cases cochées");
+        ajouterErreurChamp(champs.checkbox);
     }
 
     if (erreurs.length > 0) {
@@ -128,6 +129,9 @@ function ajouterErreurChamp(champ) {
 
 function enleverErreurChamps() {
     for (const prop in champs) {
-        champs[prop].classList.remove('error');
+        let classes = champs[prop].classList;
+        if (classes.contains('error')) {
+            classes.remove('error');
+        }
     }
 }

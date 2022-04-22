@@ -70,11 +70,6 @@ function validation() {
         ajouterErreurChamp(champs.mot_de_passe);
     }
 
-    if (verifierChampVide(champs.c_mot_de_passe.value)) {
-        erreurs.push({ message: "Le champ de confirmation de mot de passe ne doit pas être vide.", order: 4 });
-        ajouterErreurChamp(champs.c_mot_de_passe);
-    }
-
     if (champs.c_mot_de_passe.value !== champs.mot_de_passe.value) {
         erreurs.push({ message: "Les champs mot de passe et confirmation de mot de passe doivent être identique.", order: 5 });
         ajouterErreurChamp(champs.c_mot_de_passe);
@@ -102,7 +97,7 @@ function validation() {
     }
 
     if (erreurs.length > 0) {
-        erreurs.sort((a, b) => a.order > b.order);
+        erreurs = erreurs.sort((a, b) => a.order > b.order ? 1 : -1);
         boite_erreur.style.display = "block";
         erreurs.forEach(erreur => {
             champs.liste_erreur.innerHTML += `<li>${erreur.message}</li>`;

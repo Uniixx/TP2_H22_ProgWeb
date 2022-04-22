@@ -6,6 +6,10 @@ let btnSuivant = document.getElementById("suivant");
 let btnPrecedent = document.getElementById("precedent");
 let btnArret = document.getElementById("arret");
 let indexImageEnCours = 0;
+let vitesseImageAutomatique = document.getElementById("vitesseVisionneuse");
+let changerImageAutomatiqueTrueFalse = true;
+let vitesseDeBase = vitesseImageAutomatique.value;
+let vitesseSelectionne = vitesseImageAutomatique.value;
 
 //Variable de mes vignettes
 let vignette1 = document.getElementById("vignnetteUn");
@@ -19,11 +23,16 @@ const tabVignettes = [vignette1, vignette2, vignette3, vignette4, vignette5, vig
 const pathImgPrincipale = ["images/foret.jpg", "images/lac.jpg", "images/montagne.png", "images/plage.png", "images/plaine.jpg", "images/urbbain.jpg"];
 
 //Minuterie
-let timer = setInterval(ChangerImageAutomatique, 1000);
+const vitesseLente = 1500;
+const vitesseMoyenne = 1000;
+const vitesseRapide = 500;
+let timer = setInterval(ChangerImageAutomatique, vitesseMoyenne);
 
 //Events
 btnSuivant.addEventListener("click", ChangerImgPrincipaleSuivantPrecedent, false);
 btnPrecedent.addEventListener("click", ChangerImgPrincipaleSuivantPrecedent, false);
+btnArret.addEventListener("click", ActiverDesactiverChangementAutomatique, false);
+vitesseImageAutomatique.addEventListener("change", ChangerVitesseVisionneuse, false);
 
 for (let indexTabVignettes = 0; indexTabVignettes < tabVignettes.length; indexTabVignettes++) {
     tabVignettes[indexTabVignettes].addEventListener("click", CliqueVignetteChangeImgPrincipale, false);
@@ -82,7 +91,7 @@ function IndexImagePrincipaleEnCours()
 }
 
 //Affiche la bordure rouge autour de la vignette en cours
-function VignetteAfficher(indexImageEnCours)
+function VignetteAfficher()
 {
     if (indexImageEnCours == 0)
     {
@@ -166,5 +175,78 @@ function CliqueVignetteChangeImgPrincipale(e)
 
 function ChangerImageAutomatique()
 {
-    console.log("Test");
+    if(changerImageAutomatiqueTrueFalse == true)
+    {
+        indexImageEnCours = IndexImagePrincipaleEnCours();
+
+        let nouvelleImage = "";
+
+        if (indexImageEnCours == 5)
+        {
+            nouvelleImage = pathImgPrincipale[0];
+            indexImageEnCours = 0;
+        }
+        else
+        {
+            nouvelleImage = pathImgPrincipale[++indexImageEnCours];
+        }
+        
+        RetirerClassVignettes();
+        imagePrincipale.src = nouvelleImage;
+        VignetteAfficher();
+    }
+}
+
+function ActiverDesactiverChangementAutomatique(e)
+{
+    if(e.target.textContent == "Arrêt")
+    {
+        console.log(vitesseSelectionne);
+        e.target.textContent = "Activer";
+        changerImageAutomatiqueTrueFalse = false;
+        clearInterval(timer);
+    }
+    else
+    {
+        console.log(vitesseSelectionne);
+        e.target.textContent = "Arrêt";
+        changerImageAutomatiqueTrueFalse = true;
+
+        if(vitesseSelectionne == "moyen")
+        {
+            vitesseSelectionne = vitesseMoyenne;
+            clearInterval(timer);
+            timer = setInterval(ChangerImageAutomatique, vitesseSelectionne);
+        }
+        else
+        {
+            clearInterval(timer);
+            timer = setInterval(ChangerImageAutomatique, vitesseSelectionne);
+        }
+        
+    }
+}
+
+function ChangerVitesseVisionneuse(e)
+{
+        if(e.target.value == "lent")
+        {
+            vitesseSelectionne = vitesseLente;
+            clearInterval(timer);
+            timer = setInterval(ChangerImageAutomatique, vitesseSelectionne);
+        }
+
+        if(e.target.value == "moyen")
+        {
+            vitesseSelectionne = vitesseMoyenne;
+            clearInterval(timer);
+            timer = setInterval(ChangerImageAutomatique, vitesseSelectionne);
+        }
+
+        if(e.target.value == "rapide")
+        {
+            vitesseSelectionne = vitesseRapide;
+            clearInterval(timer);
+            timer = setInterval(ChangerImageAutomatique, vitesseSelectionne);
+        }
 }

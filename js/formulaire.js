@@ -65,64 +65,30 @@ function validation() {
         }
     }
 
-    // //1
-    // if (verifierChampVide(champs.nom_utilisateur.value)) {
-    //     erreurs.push("Le champ nom d'utilisateur ne doit pas être vide.");
-    //     ajouterErreurChamp(champs.nom_utilisateur);
-    // }
-
-    // //2
-    // if (verifierChampVide(champs.mot_de_passe.value)) {
-    //     erreurs.push("Le champ mot de passe ne doit pas être vide.");
-    //     ajouterErreurChamp(champs.mot_de_passe);
-    // }
-
-    //3
     if (!champs.mot_de_passe.value.match(regex_mdp)) {
         erreurs.push({ message: "Le champ mot de passe doit contenir au minimum un chiffre et un charactère spécial.", order: 3 });
         ajouterErreurChamp(champs.mot_de_passe);
     }
 
-    //4
     if (verifierChampVide(champs.c_mot_de_passe.value)) {
         erreurs.push({ message: "Le champ de confirmation de mot de passe ne doit pas être vide.", order: 4 });
         ajouterErreurChamp(champs.c_mot_de_passe);
     }
 
-    //5
     if (champs.c_mot_de_passe.value !== champs.mot_de_passe.value) {
         erreurs.push({ message: "Les champs mot de passe et confirmation de mot de passe doivent être identique.", order: 5 });
         ajouterErreurChamp(champs.c_mot_de_passe);
     }
 
-    //6
-    // if (verifierChampVide(champs.prenom.value)) {
-    //     erreurs.push("Le champ prénom ne doit pas être vide.");
-    //     ajouterErreurChamp(champs.prenom);
-    // }
-
-    //7
-    // if (verifierChampVide(champs.nom.value)) {
-    //     erreurs.push("Le champ nom ne doit pas être vide.");
-    //     ajouterErreurChamp(champs.nom);
-    // }
-    //8
     if (!verifierChampVide(champs.email.value) && !champs.email.value.match(regex_email)) {
         erreurs.push({ message: "Le champ courriel doit être valide (abc@abc.com).", order: 8 });
         ajouterErreurChamp(champs.email);
     }
 
-    // //9
-    // if (verifierChampVide(champs.date_de_naissance.value)) {
-    //     erreurs.push("Le champ date de naissance ne doit pas être vide.");
-    //     ajouterErreurChamp(champs.date_de_naissance);
-    // }
-
     let date = new Date(champs.date_de_naissance.value.replace("-", " "));
     let dateAuj = new Date();
     dateAuj.setHours(0, 0, 0, 0);
 
-    // 10
     if (!isNaN(date) && !isNaN(dateAuj)) {
         if (date > dateAuj || date.toISOString() === dateAuj.toISOString()) {
             erreurs.push({ message: "La date de naissance doit être inférieur à aujourd'hui.", order: 10 });
@@ -130,7 +96,6 @@ function validation() {
         }
     }
 
-    // 11
     if (verifierChampVide(checkboxs) || checkboxs.length > 2) {
         erreurs.push({ message: "Le champ préférences doit avoir entre une et deux cases cochées", order: 11 });
         ajouterErreurChamp(champs.checkbox);

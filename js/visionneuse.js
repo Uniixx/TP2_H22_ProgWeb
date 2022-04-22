@@ -203,7 +203,7 @@ function ActiverDesactiverChangementAutomatique() {
     if (btnArret.textContent == "Arrêt") {
         btnArret.textContent = "Activer";
         spanStatut.className = "chgAutoDesactivé";
-        spanStatut.textContent = "Innactif"
+        spanStatut.textContent = "Inactif"
         changerImageAutomatiqueTrueFalse = false;
         clearInterval(timer);
     } else {

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Test Suite</title>
+<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.18.1.css">
+<script src="js/formulaire.js"></script>
+
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.18.1.js"></script>
+    <script>
+        QUnit.module('verifier_champ_vide', function() {
+            QUnit.test('champ', function(assert) {
+                const input = "";
+
+                const result = verifierChampVide(input);
+
+                assert.true(result);
+            });
+        });
+    </script>
+</body>

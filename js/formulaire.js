@@ -128,9 +128,11 @@ function ajouterErreurChamp(champ) {
 
 function enleverErreurChamps() {
     for (const prop in champs) {
-        let classes = champs[prop].classList;
-        if (classes.contains('error')) {
-            classes.remove('error');
+        if (champs.hasOwnProperty(prop)) {
+            let classes = champs[prop].classList;
+            if (classes.contains('error')) {
+                classes.remove('error');
+            }
         }
     }
 }

@@ -127,11 +127,11 @@ function verifierMotDePasseChiffres(mdp) {
 }
 
 function verifierMotDePasse(mdp) {
-    let letters = "abcdefghijklmnopqrstuvwxyz";
+    let lettres = "abcdefghijklmnopqrstuvwxyz";
     mdp = mdp.toLowerCase();
 
-    for (let i = 0; i < letters.length; i++) {
-        if (mdp.includes(letters[i])) {
+    for (let i = 0; i < lettres.length; i++) {
+        if (mdp.includes(lettres[i])) {
             return false;
         }
     }

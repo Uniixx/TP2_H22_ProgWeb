@@ -7,40 +7,35 @@ button
 {
     width: 100px;
 }
-#menuVisionneuse > ul
+.imageEnCours
 {
-    list-style: none;
-    padding: 0;
+    border: 2px solid rgb(255, 0, 0);
 }
 #menuVisionneuse select
 {
     width: 100px;
-    margin-left: 15px;
-}
-#menuVisionneuse button
-{
-    display: block;
-    margin: 15px 15px;
+    margin-left: 20px;
 }
 #vignettes img
 {
-    margin-right: 2px;
+    margin-right: 1.38px;
     cursor: pointer;
 }
 #vignettes li
 {
     display: inline-block;
 }
+#menuVisionneuse button
+{
+    margin: 5px 20px;
+}
 #vignettes > ul
 {
     list-style: none;
     padding: 0;
 }
-#menuVisionneuse button:first-of-type
+#menuVisionneuse > ul
 {
-    margin: 0 15px;
-}
-.imageEnCours
-{
-    border: 2px solid rgb(255, 0, 0);
+    list-style: none;
+    padding: 0;
 }

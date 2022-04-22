@@ -1,10 +1,10 @@
 /* CSS Formulaire */
 
-div {
+main div {
     margin-bottom: 20px;
 }
 
-div>label {
+main div>label {
     display: inline-block;
     width: 250px;
     font-weight: bold;

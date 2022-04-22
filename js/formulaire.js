@@ -52,10 +52,10 @@ function validation() {
         let order = 0;
         let nom_champ = id.replaceAll("_", " ");
 
-        if (nom_champ === "c mot de passe") {
-            nom_champ = "confirmation du mot de passe";
-        }
         if (verifierChampVide(value)) {
+            if (nom_champ === "c mot de passe") {
+                nom_champ = "confirmation du mot de passe";
+            }
             order = orderId(id);
             erreurs.push({
                 message: `Le champ ${nom_champ} ne doit pas être vide.`,
